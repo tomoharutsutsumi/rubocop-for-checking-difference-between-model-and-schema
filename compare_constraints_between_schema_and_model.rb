@@ -4,19 +4,19 @@ module RuboCop
   module Cop
     module CustomCops
       class CompareConstraintsBetweenSchemaAndModel < Cop
-        MSG = "Even though schema doesn't have 'null false', corresponding association doesn't alsove have 'optional true'".freeze
+        MSG = "Even though schema doesn't have 'null false', corresponding association doesn't also have 'optional true'".freeze
 
         def investigate(processed_source)
           model_file = processed_source.file_path
           return unless model_file.include?('app/models')
 
-          has_null_false = check_column_has_null_false(model_file:)
+          has_null_false_for = check_column_has_null_false(model_file:)
 
           processed_source.ast.each_node(:send) do |node|
             next unless node.method_name == :belongs_to
 
             related_model_name = node.arguments.first.value.to_s
-            if !has_null_false[related_model_name] && !has_optional_true?(node:)
+            if !has_null_false_for[related_model_name] && !has_optional_true?(node:)
               add_offense(node, location: :expression, message: MSG)
             end
           end
