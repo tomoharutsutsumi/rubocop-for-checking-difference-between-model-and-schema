@@ -39,6 +39,7 @@ module RuboCop
               end
             end
           end
+
           has_null_false
         end
 
