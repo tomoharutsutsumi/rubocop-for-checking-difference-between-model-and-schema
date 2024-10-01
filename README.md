@@ -1,5 +1,5 @@
 # rubocop-for-checking-difference-between-model-and-schema
-This is a custom cop for checking a difference between model and schema.
+This is a custom cop for checking a difference between model and schema using AST(Abstract Syntax Tree).
 
 ## Why did I create this cop
 In the project of a company I'm belonging to, an error occurred in the production environment.
