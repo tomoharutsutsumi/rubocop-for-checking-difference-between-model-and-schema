@@ -6,7 +6,7 @@ module RuboCop
       class CompareConstraintsBetweenSchemaAndModel < Cop
         MSG = "Even though schema doesn't have 'null false', corresponding association doesn't also have 'optional true'".freeze
 
-        def investigate(processed_source)
+        def on_new_investigation
           model_file = processed_source.file_path
           return unless model_file.include?('app/models')
 
