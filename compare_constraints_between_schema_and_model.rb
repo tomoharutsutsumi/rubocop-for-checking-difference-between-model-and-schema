@@ -29,7 +29,7 @@ module RuboCop
           schema_path = File.join(Dir.pwd, 'db', 'schema.rb')
           schema = File.read(schema_path)
           has_null_false = {}
-          extracted_table = schema.scan(/create_table "#{model_name}s".*?end/m).first
+          extracted_table = schema.scan(/create_table "#{model_name.pluralize}".*?end/m).first
           if extracted_table.present?
             lines = extracted_table.split("\n")
             lines.each do |line|
